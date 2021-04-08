@@ -1,5 +1,5 @@
 <?php get_header(); ?>
 
-<h1>Hello, world!</h1>
+<div>front page content goes here</div>
 
 <?php get_footer(); ?>

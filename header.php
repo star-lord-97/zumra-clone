@@ -7,5 +7,6 @@
     <?php wp_head() ?>
 </head>
 
-<body>
-    <p>header.php</p>
+<body class="min-h-screen flex flex-col justify-between">
+    <?php get_template_part('templates/navbar') ?>
+    <?php get_template_part('templates/mobile-navmodal') ?>
