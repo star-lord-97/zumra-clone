@@ -3,6 +3,7 @@
 function zumra_files()
 {
     wp_enqueue_script('main-js', get_theme_file_uri('resources/js/bundled.js'), NULL, '1.0', true);
+    wp_enqueue_script('alpine-js', 'https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js', NULL, '1.0', true);
     wp_enqueue_style('main_styles', get_theme_file_uri('resources/css/style.css'));
 }
 

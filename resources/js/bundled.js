@@ -7,14 +7,7 @@
   \*********************************/
 /***/ (() => {
 
-var mobileMenuIcon = document.querySelector("#mobile-menu-icon");
-var mobileMenuModal = document.querySelector("#mobile-nav-modal");
-mobileMenuIcon.addEventListener("click", function () {
-  mobileMenuModal.classList.toggle("hidden");
-});
-mobileMenuModal.addEventListener("click", function () {
-  mobileMenuModal.classList.toggle("hidden");
-});
+
 
 /***/ }),
 
