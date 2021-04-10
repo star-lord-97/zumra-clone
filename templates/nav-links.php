@@ -1,5 +1,5 @@
-<a class="hover:border hover:border-t" href="#">Home</a>
-<a class="hover:border hover:border-t" href="#">Shop</a>
+<a href="#">Home</a>
+<a href="#">Shop</a>
 <div class="relative" x-data="{ categoryDropdownMenu: false }" @click="categoryDropdownMenu = !categoryDropdownMenu">
     <div class="hover:cursor-pointer">
         Categories
@@ -15,5 +15,5 @@
         <a href="#">blah blah blah blah</a>
     </div>
 </div>
-<a class="hover:border hover:border-t" href="#">Contact us</a>
-<a class="hover:border hover:border-t" href="#">About us</a>
+<a href="#">Contact us</a>
+<a href="#">About us</a>
