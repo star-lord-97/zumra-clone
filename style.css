@@ -9,3 +9,14 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.footer-title::after{
+    @apply border-b-2 w-12 block h-0.5 rounded-sm border-red-600 absolute;
+    content:' ';
+}
+.footer-list{
+    @apply text-gray-800 cursor-pointer hover:text-yellow-300;
+}
+.social-icon{
+    @apply w-6 h-6 mt-1 transition duration-300 ease-out transform hover:scale-110;
+}
