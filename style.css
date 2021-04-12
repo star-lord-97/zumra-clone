@@ -10,13 +10,21 @@
 
 @import "tailwindcss/utilities";
 
-.footer-title::after{
-    @apply border-b-2 w-12 block h-0.5 rounded-sm border-red-600 absolute;
-    content:' ';
+/* styles to control the height of the hero glide responsively */
+.glide__slides {
+    height: 200px;
 }
-.footer-list{
-    @apply text-gray-800 cursor-pointer hover:text-yellow-300;
+
+@media (min-width: 768px) {
+    .glide__slides {
+        height: 600px;
+    }
 }
-.social-icon{
-    @apply w-6 h-6 mt-1 transition duration-300 ease-out transform hover:scale-110;
+/* end */
+
+/* styles to control the default border and shadow of the hero glide arrows */
+.glide__arrow {
+    border: 0 !important;
+    box-shadow: 0 0 0 0 !important;
 }
+/* end */

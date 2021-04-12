@@ -32279,57 +32279,28 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
-.footer-title::after{
-  --tw-border-opacity: 1;
-  border-color: rgba(220, 38, 38, var(--tw-border-opacity));
-  border-radius: 0.125rem;
-  border-bottom-width: 2px;
-  display: block;
-  height: 0.125rem;
-  position: absolute;
-  width: 3rem;
-  content:' ';
+/* styles to control the height of the hero glide responsively */
+
+.glide__slides {
+  height: 200px;
 }
 
-.footer-list{
-  cursor: pointer;
-  --tw-text-opacity: 1;
-  color: rgba(31, 41, 55, var(--tw-text-opacity));
+@media (min-width: 768px) {
+  .glide__slides {
+    height: 600px;
+  }
 }
 
-.footer-list:hover {
-  --tw-text-opacity: 1;
-  color: rgba(252, 211, 77, var(--tw-text-opacity));
+/* end */
+
+/* styles to control the default border and shadow of the hero glide arrows */
+
+.glide__arrow {
+  border: 0 !important;
+  box-shadow: 0 0 0 0 !important;
 }
 
-.social-icon{
-  height: 1.5rem;
-  margin-top: 0.25rem;
-  width: 1.5rem;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.social-icon:hover {
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-}
-
-.social-icon {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
+/* end */
 
 @media (min-width: 640px) {
   .sm\:container {
@@ -190085,3 +190056,4 @@ video {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+
