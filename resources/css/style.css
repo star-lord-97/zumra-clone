@@ -4,6 +4,8 @@
     Version: 1.0
 */
 
+/* importing tailwindcss base, components and utilities */
+
 /* 
     ! tailwindcss v2.1.1 | MIT License | https://tailwindcss.com
 */
@@ -32279,6 +32281,8 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+/* end */
+
 /* styles to control the height of the hero glide responsively */
 
 .glide__slides {
@@ -32293,11 +32297,20 @@ video {
 
 /* end */
 
-/* styles to control the default border and shadow of the hero glide arrows */
+/* styles to control the default border, shadow and position of the hero glide arrows */
 
 .glide__arrow {
   border: 0 !important;
   box-shadow: 0 0 0 0 !important;
+  padding: 0 !important;
+}
+
+.glide__arrow--left {
+  left: 0% !important;
+}
+
+.glide__arrow--right {
+  right: 0% !important;
 }
 
 /* end */

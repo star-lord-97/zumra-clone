@@ -4,11 +4,13 @@
     Version: 1.0
 */
 
+/* importing tailwindcss base, components and utilities */
 @import "tailwindcss/base";
 
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+/* end */
 
 /* styles to control the height of the hero glide responsively */
 .glide__slides {
@@ -22,9 +24,18 @@
 }
 /* end */
 
-/* styles to control the default border and shadow of the hero glide arrows */
+/* styles to control the default border, shadow and position of the hero glide arrows */
 .glide__arrow {
     border: 0 !important;
     box-shadow: 0 0 0 0 !important;
+    padding: 0 !important;
+}
+
+.glide__arrow--left {
+    left: 0% !important;
+}
+
+.glide__arrow--right {
+    right: 0% !important;
 }
 /* end */

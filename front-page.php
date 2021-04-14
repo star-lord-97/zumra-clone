@@ -16,13 +16,13 @@
                     <!-- glide arrows -->
                     <div class="glide__arrows" data-glide-el="controls">
                         <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="72px" viewBox="0 0 24 24" width="72px" class="fill-current text-gray-300">
+                            <svg viewBox="0 0 24 24" class="fill-current text-gray-300 h-12 w-12 md:h-24 md:w-24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
                                 <path d="M15.61 7.41L14.2 6l-6 6 6 6 1.41-1.41L11.03 12l4.58-4.59z" />
                             </svg>
                         </button>
                         <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="72px" viewBox="0 0 24 24" width="72px" class="fill-current text-gray-300">
+                            <svg viewBox="0 0 24 24" class="fill-current text-gray-300 h-12 w-12 md:h-24 md:w-24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
                                 <path d="M10.02 6L8.61 7.41 13.19 12l-4.58 4.59L10.02 18l6-6-6-6z" />
                             </svg>
@@ -38,7 +38,31 @@
         <div class="container mx-auto">
             <h1 class="font-bold text-lg mb-4">SPECIAL OFFERS</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <?php get_template_part('templates/product-item') ?>
+                <?php
+                // query to get the newest 4 products on sale
+                $saleProducts = new WP_Query(array(
+                    'posts_per_page' => 4,
+                    'post_type' => 'product',
+                    'meta_query' => array(array(
+                        'key' => 'on_sale',
+                        'compare' => '==',
+                        'value' => '1',
+                    ))
+                ));
+
+                // sending the products data to a template part to be rendered
+                while ($saleProducts->have_posts()) {
+                    $saleProducts->the_post();
+                    get_template_part('templates/product-item', null, array(
+                        'title' => get_the_title(),
+                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'rate' => get_field('rate'),
+                        'price' => get_field('price'),
+                        'on_sale' => get_field('on_sale'),
+                        'sale_price' => get_field('sale_price')
+                    ));
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -59,8 +83,26 @@
         <div class="container mx-auto">
             <h1 class="font-bold text-lg mb-4">NEW ARRIVAL</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <?php get_template_part('templates/product-item') ?>
-            </div>
+                <?php
+                // query to get the newest 4 products
+                $newProducts = new WP_Query(array(
+                    'posts_per_page' => 4,
+                    'post_type' => 'product',
+                ));
+
+                // sending the products data to a template part to be rendered
+                while ($newProducts->have_posts()) {
+                    $newProducts->the_post();
+                    get_template_part('templates/product-item', null, array(
+                        'title' => get_the_title(),
+                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'rate' => get_field('rate'),
+                        'price' => get_field('price'),
+                        'on_sale' => get_field('on_sale'),
+                        'sale_price' => get_field('sale_price')
+                    ));
+                }
+                ?> </div>
         </div>
     </div>
 
@@ -69,8 +111,29 @@
         <div class="container mx-auto">
             <h1 class="font-bold text-lg mb-4">BEST SELLING</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <?php get_template_part('templates/product-item') ?>
-            </div>
+                <?php
+                // query to get the highest 4 products rates
+                $saleProducts = new WP_Query(array(
+                    'posts_per_page' => 4,
+                    'post_type' => 'product',
+                    'meta_key' => 'rate',
+                    'orderby' => 'meta_value',
+                    'order' => 'DESC'
+                ));
+
+                // sending the products data to a template part to be rendered
+                while ($saleProducts->have_posts()) {
+                    $saleProducts->the_post();
+                    get_template_part('templates/product-item', null, array(
+                        'title' => get_the_title(),
+                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'rate' => get_field('rate'),
+                        'price' => get_field('price'),
+                        'on_sale' => get_field('on_sale'),
+                        'sale_price' => get_field('sale_price')
+                    ));
+                }
+                ?> </div>
         </div>
     </div>
 </main>
