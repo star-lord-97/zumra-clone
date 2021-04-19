@@ -22,5 +22,6 @@ function zumra_features()
 {
     // allowing posts to have featured images
     add_theme_support('post-thumbnails');
-    add_image_size('product-thumbnail', 300, 320, true);
+    add_image_size('product-card-thumbnail', 300, 320, true);
+    add_image_size('product-thumbnail', 400, 440, true);
 }

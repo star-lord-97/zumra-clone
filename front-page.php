@@ -1,9 +1,9 @@
 <?php get_header(); ?>
 
 <main>
-    <!-- hero glide -->
-    <div class="px-4 my-8">
-        <div class="container mx-auto">
+    <div class="px-4 pt-32 pb-8 bg-gray-100">
+        <div class="container mx-auto space-y-8">
+            <!-- hero glide -->
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <!-- glide images -->
@@ -30,12 +30,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- special offers -->
-    <div class="px-4 my-8">
-        <div class="container mx-auto">
+            <!-- special offers -->
             <h1 class="font-bold text-lg mb-4">SPECIAL OFFERS</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <?php
@@ -54,8 +50,9 @@
                 while ($saleProducts->have_posts()) {
                     $saleProducts->the_post();
                     get_template_part('templates/product-item', null, array(
+                        'permalink' => get_the_permalink(),
                         'title' => get_the_title(),
-                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'image' => get_the_post_thumbnail_url(null, 'product-card-thumbnail'),
                         'rate' => get_field('rate'),
                         'price' => get_field('price'),
                         'on_sale' => get_field('on_sale'),
@@ -64,23 +61,15 @@
                 }
                 ?>
             </div>
-        </div>
-    </div>
 
-    <!-- posters -->
-    <div class="px-4 my-8">
-        <div class="container mx-auto">
+            <!-- posters -->
             <div class="grid grid-cols-1 grid-rows-2 md:grid-cols-3 gap-4 md:gap-8">
                 <h1 class="border md:col-span-1 md:row-span-1"><img class="w-full h-48 md:h-96" src="<?= get_theme_file_uri('resources/img/poster1.jpg') ?>" alt=""></h1>
                 <h1 class="border md:col-span-2 md:row-span-1"><img class="w-full h-48 md:h-96" src="<?= get_theme_file_uri('resources/img/poster2.jpg') ?>" alt=""></h1>
                 <h1 class="border md:col-span-3 md:row-span-1"><img class="w-full h-48 md:h-96" src="<?= get_theme_file_uri('resources/img/poster3.jpg') ?>" alt=""></h1>
             </div>
-        </div>
-    </div>
 
-    <!-- new arrival -->
-    <div class="px-4 my-8">
-        <div class="container mx-auto">
+            <!-- new arrival -->
             <h1 class="font-bold text-lg mb-4">NEW ARRIVAL</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <?php
@@ -94,21 +83,18 @@
                 while ($newProducts->have_posts()) {
                     $newProducts->the_post();
                     get_template_part('templates/product-item', null, array(
+                        'permalink' => get_the_permalink(),
                         'title' => get_the_title(),
-                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'image' => get_the_post_thumbnail_url(null, 'product-card-thumbnail'),
                         'rate' => get_field('rate'),
                         'price' => get_field('price'),
                         'on_sale' => get_field('on_sale'),
                         'sale_price' => get_field('sale_price')
                     ));
                 }
-                ?> </div>
-        </div>
-    </div>
+                ?></div>
 
-    <!-- best selling -->
-    <div class="px-4 my-8">
-        <div class="container mx-auto">
+            <!-- best selling -->
             <h1 class="font-bold text-lg mb-4">BEST SELLING</h1>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <?php
@@ -125,17 +111,19 @@
                 while ($saleProducts->have_posts()) {
                     $saleProducts->the_post();
                     get_template_part('templates/product-item', null, array(
+                        'permalink' => get_the_permalink(),
                         'title' => get_the_title(),
-                        'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
+                        'image' => get_the_post_thumbnail_url(null, 'product-card-thumbnail'),
                         'rate' => get_field('rate'),
                         'price' => get_field('price'),
                         'on_sale' => get_field('on_sale'),
                         'sale_price' => get_field('sale_price')
                     ));
                 }
-                ?> </div>
+                ?></div>
         </div>
     </div>
+
 </main>
 
 <?php get_footer(); ?>

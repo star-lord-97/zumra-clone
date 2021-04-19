@@ -1,4 +1,4 @@
-<a href="#">Home</a>
+<a href="<?= get_site_url() ?>">Home</a>
 <a href="#">Shop</a>
 <div class="relative" x-data="{ categoryDropdownMenu: false }" @click="categoryDropdownMenu = !categoryDropdownMenu">
     <div class="hover:cursor-pointer">

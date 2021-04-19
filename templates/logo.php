@@ -1,1 +1,1 @@
-<a href="#">logo</a>
+<a href="<?= get_site_url() ?>">logo</a>

@@ -1,7 +1,8 @@
 <!-- footer -->
 <footer>
     <div class="bg-primary text-white px-4 py-8">
-        <div class="container mx-auto grid grid-cols-2 md:grid-cols-3 gap-y-8">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-8">
+            <a href="<?php  ?>">logo</a>
             <div class="flex flex-col">
                 <h1 class="pb-4 font-bold">CATEGORIES</h1>
                 <div class="flex flex-col text-sm space-y-2">
