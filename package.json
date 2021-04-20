@@ -12,5 +12,8 @@
         "postcss": "^8.1.14",
         "postcss-nested": "^5.0.5",
         "tailwindcss": "^2.1.1"
+    },
+    "dependencies": {
+        "nouislider": "^14.7.0"
     }
 }
