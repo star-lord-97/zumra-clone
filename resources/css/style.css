@@ -32315,6 +32315,126 @@ video {
 
 /* end */
 
+/* single-product styles */
+
+/*
+product navigation panel
+*/
+
+#page-nav a:after
+{
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 28px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+/* 5 stars rating disply */
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+  color: red;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: red;
+}
+
+/* add review 5 stars rating styles */
+
+#star-rating{
+  display: grid;
+  justify-content: flex-end;
+  gap: 0px;
+  grid-auto-flow: column;
+  transform: rotateY(180deg);
+}
+
+.star-label{
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.star-label::before{
+  content: "\f006";
+  color: red;
+  display: block;
+}
+
+.star-label:hover:after,
+.star-label:hover ~ .star-label:after,
+.star-input:checked ~ .star-label:after{
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: red;
+  position: absolute;
+  top:0;
+  display: block;
+}
+
+/*add to wishlist hreat styles */
+
+#heart-label{
+  display: inline-block;
+  position: absolute;
+  font-family: FontAwesome;
+}
+
+#heart-label::before{
+  content: '\f08a';
+  font-family: FontAwesome;
+  margin-right: 10px;
+  color: red;
+  display: inline-block;
+}
+
+#heart-label:hover::before,
+#heart-input:checked ~ #heart-label:before{
+  content: '\f004';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: red;
+  position: relative;
+  display: inline-block;
+}
+
+.noUi-connect {
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+
+.noUi-handle{
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+  border-radius: 9999px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -190069,4 +190189,3 @@ video {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-

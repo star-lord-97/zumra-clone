@@ -4,6 +4,10 @@ add_action('wp_enqueue_scripts', 'zumra_files');
 
 function zumra_files()
 {
+    // import noUiSlider css
+    wp_enqueue_style('slider-css', get_theme_file_uri('node_modules/nouislider/distribute/nouislider.min.css'));
+    // import noUiSlider js
+    wp_enqueue_script('slider-js', get_theme_file_uri('node_modules/nouislider/distribute/nouislider.min.js'));
     // importing the bundled js file
     wp_enqueue_script('main-js', get_theme_file_uri('resources/js/bundled.js'), NULL, '1.0', true);
     // importing alpine.js
@@ -14,6 +18,8 @@ function zumra_files()
     wp_enqueue_style('glide-core', get_theme_file_uri('node_modules/@glidejs/glide/dist/css/glide.core.min.css'));
     // importing glide.theme
     wp_enqueue_style('glide-theme', get_theme_file_uri('node_modules/@glidejs/glide/dist/css/glide.theme.min.css'));
+    // import font-awesome icons 
+    wp_enqueue_script('font-awesome', 'https://kit.fontawesome.com/63e45fbbf9.js', NULL, '1.0', true);
 }
 
 add_action('after_setup_theme', 'zumra_features');
