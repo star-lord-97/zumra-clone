@@ -65,9 +65,7 @@ get_header();
             <div class="grid grid-cols-4 gap-4">
                 <?php 
                 // rendering the sort results 
-                get_template_part('templates/sortQuery-results', null, array(
-                    'is_taxonomy' => is_tax()
-                ));
+                require get_theme_file_path('/includes/sortQuery-results.php');
                 ?>
 
             </div>

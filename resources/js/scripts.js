@@ -5,8 +5,8 @@ new Glide(".glide", {
     gap: 0,
     animationDuration: 1000,
     animationTimingFunc: "ease-in-out",
-}).mount();
- */
+}).mount(); */
+
 
 //////////////////////////////////////////////////////////////////////////
                 /* single-product JS code */                                   
