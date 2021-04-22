@@ -2,7 +2,7 @@
 get_header();
 
 ?>
-<main class="bg-gray-100">
+<main class="pt-20 bg-gray-100">
     <!-- product navigation -->
     <div class="m-4" >
         <nav class="grid justify-start grid-flow-col gap-4 text-justify" id="page-nav">
@@ -40,10 +40,12 @@ get_header();
                 <div id="slider-handles"> 
                 </div>
                 <div id="slider-value">
-                    
                 </div>
+                
+                <!-- hidden input tags to send the price ranges via get method -->
                 <input name="lower" class="hidden" id="lower">
                 <input name="upper" class="hidden" id="upper">
+                <input name="orderby" class="hidden" id="sort-filter">
                 <button class="w-full text-white bg-red-500 " id="filter-btn" type="submit">FILTER</button>
             </form>
         </div>
@@ -51,80 +53,21 @@ get_header();
             <!-- Sort-by panel -->
             <div>
                 <form method="get" action="">
-                    <select name="orderby" >
-                        <option value="ASC" >sort by price low to high</option>
-                        <option value="DESC" >sort by price high to low</option>
-                        <input name="lower" class="hidden" id="lower">
-                        <input name="upper" class="hidden" id="upper">
+                    <select id="orderby-list" name="orderby" >
                     </select>
-                    <input id="sort-btn" type="submit" value="submit">
+                    <!-- hidden input tags to send the sorting values via get method -->
+                    <input name="lower" class="hidden" id="lower">
+                    <input name="upper" class="hidden" id="upper">
+                    <input class="hidden" id="sort-btn" type="submit">
                 <form>
             </div>
             <!-- all products -->
             <div class="grid grid-cols-4 gap-4">
                 <?php 
-                // filter between prices
-                if (isset($_GET['upper']) && isset($_GET['lower'])){
-                    $upper = $_GET['upper'];
-                    $lower = $_GET['lower'];
-                    if (isset($_GET['orderby'])){
-                        $priceSort = $_GET['orderby'];
-                        $results = new WP_Query(array(
-                            'posts_per_page' => 4,
-                            'post_type' => 'product',
-                            'meta_key' => 'price',
-                            'orderby' => 'meta_value_num',
-                            'order' => $priceSort,
-                            'meta_query' => array(array(
-                                'key' => 'price',
-                                'value' =>  array($lower,$upper),
-                                'compare' => 'BETWEEN',
-                                'type' => 'NUMERIC'
-                            )
-                            )
-                        )
-                        );
-                    }else{
-                        $results = new WP_Query(array(
-                            'posts_per_page' => 4,
-                            'post_type' => 'product',
-                            'meta_query' => array(array(
-                                'key' => 'price',
-                                'value' =>  array($lower,$upper),
-                                'compare' => 'BETWEEN',
-                                'type' => 'NUMERIC'
-                            )
-                            )
-                        )
-                        );
-                    }
-                    
-                    while($results->have_posts()){
-                        $results->the_post();
-                        get_template_part('templates/product-item', null, array(
-                            'title' => get_the_title(),
-                            'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
-                            'rate' => 4.7,
-                            'price' => get_field('price'),
-                            'on_sale' => get_field('on_sale'),
-                            'sale_price' => get_field('sale_price')
-                        ));
-                    }
-                }else{
-                    while(have_posts()){
-                        the_post();
-                        get_template_part('templates/product-item', null, array(
-                            'title' => get_the_title(),
-                            'image' => get_the_post_thumbnail_url(null, 'product-thumbnail'),
-                            'rate' => 4.7,
-                            'price' => get_field('price'),
-                            'on_sale' => get_field('on_sale'),
-                            'sale_price' => get_field('sale_price')
-                        ));
-                    }
-
-                }
-                
+                // rendering the sort results 
+                get_template_part('templates/sortQuery-results', null, array(
+                    'is_taxonomy' => is_tax()
+                ));
                 ?>
 
             </div>
