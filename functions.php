@@ -1,5 +1,7 @@
 <?php
 
+require get_theme_file_path('/includes/sort-filterRoute.php');
+
 add_action('wp_enqueue_scripts', 'zumra_files');
 
 function zumra_files()
@@ -20,6 +22,11 @@ function zumra_files()
     wp_enqueue_style('glide-theme', get_theme_file_uri('node_modules/@glidejs/glide/dist/css/glide.theme.min.css'));
     // import font-awesome icons 
     wp_enqueue_script('font-awesome', 'https://kit.fontawesome.com/63e45fbbf9.js', NULL, '1.0', true);
+    // root url for api calls
+    wp_localize_script('main-js', 'productsData', [
+        'root_url' => get_site_url(),
+        'nonce' => wp_create_nonce('wp_rest')
+    ]);
 }
 
 add_action('after_setup_theme', 'zumra_features');

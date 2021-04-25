@@ -13,8 +13,8 @@ $taxonomy = get_queried_object();
             </p>
         </nav>
     </div>
-    <div class="grid grid-flow-col gap-4 m-4">
-        <div>
+    <div class="grid gap-4 m-4 sm:grid-flow-col">
+        <div class="w-full sm:w-52">
             <!-- All Categoires Panel-->
             <div class="grid grid-flow-row divide-y divide-gray-400">
                 <a href="<?php echo site_url('/products'); ?>" class="text-center text-white bg-gray-500">ALL CATEGORIES</a>
@@ -36,40 +36,41 @@ $taxonomy = get_queried_object();
 
             </div>
             <!-- filter by price -->
-            <h1>FILTER BY PRICE</h1>
-            <form method="get" action="">
-                <div id="slider-handles"> 
-                </div>
-                <div id="slider-value">
-                </div>
-                
-                <!-- hidden input tags to send the price ranges via get method -->
-                <input name="lower" class="hidden" id="lower">
-                <input name="upper" class="hidden" id="upper">
-                <input name="orderby" class="hidden" id="sort-filter">
-                <button class="w-full text-white bg-red-500 " id="filter-btn" type="submit">FILTER</button>
-            </form>
-        </div>
-        <div>
-            <!-- Sort-by panel -->
-            <div>
-                <form method="get" action="">
-                    <select id="orderby-list" name="orderby" >
-                    </select>
+            <div class="">
+                <h1 class="text-center">FILTER BY PRICE</h1>
+                <form class="" method="get" action="">
+                    <div class="flex justify-center h-2" id="slider-handles"> 
+                    </div>
+                    <div class="text-center" id="slider-value">
+                    </div>
                     
-                    <!-- hidden input tags to send the sorting values via get method -->
+                    <!-- hidden input tags to send the price ranges via get method -->
                     <input name="lower" class="hidden" id="lower">
                     <input name="upper" class="hidden" id="upper">
-                    <input class="hidden" id="sort-btn" type="submit">
-                <form>
+                    <input name="orderby" class="hidden" id="sort-filter">
+                    <button class="w-full text-white bg-red-500 " id="filter-btn" type="submit">FILTER</button>
+                </form>
+            </div>
+        </div>
+        <div class="">
+            <!-- Sort-by panel -->
+            <div class="grid grid-flow-col bg-white">
+                <div id="results-counter" class="relative pt-1 m-2"></div>
+                <div class="grid justify-self-end">
+                    <form class="h-8 m-2 border-2 w-52" method="get" action="">
+                        <select id="orderby-list" name="orderby" >
+                        </select>
+                        <!-- hidden input tags to send the sorting values via get method -->
+                        <input name="lower" class="hidden" id="lower">
+                        <input name="upper" class="hidden" id="upper">
+                        <input class="hidden" id="sort-btn" type="submit">
+                    </form>
+                </div>
             </div>
             <!-- all products -->
-            <div class="grid grid-cols-4 gap-4">
-                <?php 
-                // rendering the sort results 
-                require get_theme_file_path('/includes/sortQuery-results.php');
-                ?>
-
+            <div id="product-results" class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-4">
+            </div>
+            <div id="paginate-links">
             </div>
         </div>
     </div>

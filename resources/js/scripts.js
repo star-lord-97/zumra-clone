@@ -50,24 +50,72 @@ document.addEventListener('DOMContentLoaded', function(){
 //////////////////////////////////////////////////////////////////////////
  /* archive-product.php && taxonomy-product-category.php JS functions */    
 //////////////////////////////////////////////////////////////////////////
-
+import $ from 'jquery';
 // get the current location url search parameters (returns as a string)
 var currentLocation = window.location;
-
+// get category name via pathname 
+var taxonomyPattern = /(?<=category\/).*[a-z]/g;
+var taxonomy_name = currentLocation.pathname.match(taxonomyPattern) ? currentLocation.pathname.match(taxonomyPattern).join():'';
+var is_taxonomy = '';
+if (taxonomy_name){
+    is_taxonomy = '?&taxonomy='
+}
 // match this string for sequance of numbers using regex
-var numberPattern = /\d+/g;
-var getRequest_numArr = currentLocation.search.match(numberPattern);
-
+var pricePattern = /(?:upper|lower).\d+/g;
+var getRequest_price = currentLocation.search.match(pricePattern) ? currentLocation.search.match(pricePattern).join() : '';
+var priceRange_pattern = /\d+/g;
+var getRequest_numArr = getRequest_price.match(priceRange_pattern);
+// get page number 
+var pagedPatten = /(?:page).\d+/g;
+var getRequest_page = currentLocation.search.match(pagedPatten) ? currentLocation.search.match(pagedPatten).join() : 1 ;
+var pagedNum = parseInt(getRequest_page,10);
 // match this string for some sorting values using regex
 var orderbyPattern = /(?:DESC|ASC|price|date)/g;
 var getRequest_orderby = currentLocation.search.match(orderbyPattern);
-
 /* if there is sorting by any paramter then put the sorting value in single 
 string to use it for comparison to render select options tag */
 if (getRequest_orderby){
     var orderby_val = getRequest_orderby[0]+' '+getRequest_orderby[1];
 }
+// recieve api sent data 
+$.getJSON(productsData.root_url +'/wp-json/api/v1/products'+currentLocation.search+is_taxonomy+taxonomy_name, ($results)=>{
+    $('#results-counter').html(`
+        <p>of ${$results.paginationInfo.map(item => item.post_count)}</p>
+        `);
+    
+    $('#product-results').html(`
+    ${$results.Products.map(item =>`
+    <a href="${item.permalink}" class="flex flex-col items-center justify-center space-y-4 bg-white border rounded-b-xl hover:bg-gray-100">
+        <div class="w-full" id="product card">
+            <img src="${item.image}" alt="" class="w-full">
+            <h1 class="flex justify-center font-bold text-gray-600" id="product-name">${item.title}</h1>
+            <div class="flex justify-center pt-2" id="rating">
+                <div class="stars-outer">
+                    <div class="stars-inner"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center w-full pb-4 justify-evenly">
+            <h1 class="font-bold">${item.price} EGP</h1>
+            ${item.on_sale ? `<h1 class="font-bold line-through">${item.sale_price} EGP</h1>`:''}
+        </div>
+    </a>
+    `).join('')}
+ `);
+    $('#paginate-links').html(`
+        ${$results.paginationInfo.map(item => item.pagination)}
+    `);
+    var productRating = 3;
+    var starPercentage = (productRating / 5) * 100;
+    // Round to nearest 10
+    var starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
 
+    // Set width of stars-inner to percentage
+    var star_elements = document.querySelectorAll('.stars-inner');
+    for(let i=0; i<star_elements.length; i++){
+        star_elements[i].style.width = starPercentageRounded;
+    }
+});
 // get the order list with the sorting by option selected if not render the default sorting list options
 var orderbyList = document.getElementById("orderby-list");
 if (orderby_val === 'DESC price'){
