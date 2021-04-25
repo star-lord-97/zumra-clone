@@ -46,27 +46,26 @@
                         <h1 class="text-gray-500"><?= get_field('available_units') . ' in stock' ?></h1>
                         <?php
                         if (isset($_POST['addToCart'])) {
-                            $_SESSION['cart'] = null;
-                            // $existsInCart = false;
+                            $existsInCart = false;
 
-                            // foreach ($_SESSION['cart'] as $index => $cartItem) {
-                            //     if ($cartItem['id'] === get_the_ID()) {
-                            //         $existsInCart = true;
-                            //         $_SESSION['cart'][$index]['quantity'] = $cartItem['quantity'] + $_POST['quantity'];
-                            //     }
-                            // }
+                            foreach ($_SESSION['cart'] as $index => $cartItem) {
+                                if ($cartItem['id'] === get_the_ID()) {
+                                    $existsInCart = true;
+                                    $_SESSION['cart'][$index]['quantity'] = $cartItem['quantity'] + $_POST['quantity'];
+                                }
+                            }
 
-                            // if (!$existsInCart) {
-                            //     $_SESSION['cart'][] = array(
-                            //         'id' => get_the_ID(),
-                            //         'quantity' => $_POST['quantity']
-                            //     );
-                            // }
+                            if (!$existsInCart) {
+                                $_SESSION['cart'][] = array(
+                                    'id' => get_the_ID(),
+                                    'quantity' => $_POST['quantity']
+                                );
+                            }
 
-                            // redirect(get_permalink(get_page_by_path('cart')));
+                            redirect(get_permalink(get_page_by_path('cart')));
                         }
                         ?>
-                        <form action="<?php the_permalink() ?>" method="post" class="flex items-center space-x-4">
+                        <form action="" method="post" class="flex items-center space-x-4">
                             <div class="grid grid-cols-3 w-1/2 md:w-1/5" x-data="{ quantity: 1 }">
                                 <button class="text-white focus:outline-none font-bold text-xl bg-red-500 rounded-l-md hover:text-black" @click.prevent="if(quantity > 1) { quantity-- }">-</button>
                                 <input type="text" name="quantity" id="quantity" class="text-center bg-white py-1" :value="quantity" />
@@ -75,8 +74,9 @@
                             <button class="focus:outline-none w-1/2 md:w-1/5 text-white bg-gray-600 rounded-md py-1 hover:text-gray-300" type="submit" name="addToCart">Add To Cart</button>
                         </form>
                     <?php } ?>
-                    <form action="<?php the_permalink() ?>" method="post">
-                        <button class="focus:outline-none w-full md:w-5/12 text-white bg-gray-600 rounded-md py-1 flex justify-center items-center space-x-2 hover:text-gray-300" type="submit">
+                    <form action="<?= get_permalink(get_page_by_path('wishlist')) ?>" method="post">
+                        <input type="hidden" name="productId" value="<?php the_ID(); ?>">
+                        <button class="focus:outline-none w-full md:w-5/12 text-white bg-gray-600 rounded-md py-1 flex justify-center items-center space-x-2 hover:text-gray-300" type="submit" name="addToWishlist">
                             <span>Add To Wishlist</span>
                             <svg class="fill-current w-6 h-6 inline" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
