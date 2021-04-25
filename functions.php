@@ -1,5 +1,19 @@
 <?php
 
+// enable sessions
+if (!session_id()) {
+    session_start();
+}
+
+// redirect to another page
+function redirect($url)
+{
+    $string = '<script type="text/javascript">';
+    $string .= 'window.location = "' . $url . '"';
+    $string .= '</script>';
+    echo $string;
+}
+
 add_action('wp_enqueue_scripts', 'zumra_files');
 
 function zumra_files()
