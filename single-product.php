@@ -44,32 +44,12 @@
                     <p><?php the_content() ?></p>
                     <?php if (get_field('available_units') > 0) { ?>
                         <h1 class="text-gray-500"><?= get_field('available_units') . ' in stock' ?></h1>
-                        <?php
-                        if (isset($_POST['addToCart'])) {
-                            $existsInCart = false;
-
-                            foreach ($_SESSION['cart'] as $index => $cartItem) {
-                                if ($cartItem['id'] === get_the_ID()) {
-                                    $existsInCart = true;
-                                    $_SESSION['cart'][$index]['quantity'] = $cartItem['quantity'] + $_POST['quantity'];
-                                }
-                            }
-
-                            if (!$existsInCart) {
-                                $_SESSION['cart'][] = array(
-                                    'id' => get_the_ID(),
-                                    'quantity' => $_POST['quantity']
-                                );
-                            }
-
-                            redirect(get_permalink(get_page_by_path('cart')));
-                        }
-                        ?>
-                        <form action="" method="post" class="flex items-center space-x-4">
+                        <form action="<?= get_permalink(get_page_by_path('cart')) ?>" method="post" class="flex items-center space-x-4">
                             <div class="grid grid-cols-3 w-1/2 md:w-1/5" x-data="{ quantity: 1 }">
+                                <input type="hidden" name="productId" value="<?php the_ID(); ?>">
                                 <button class="text-white focus:outline-none font-bold text-xl bg-red-500 rounded-l-md hover:text-black" @click.prevent="if(quantity > 1) { quantity-- }">-</button>
                                 <input type="text" name="quantity" id="quantity" class="text-center bg-white py-1" :value="quantity" />
-                                <button class="text-white focus:outline-none font-bold text-xl bg-red-500 rounded-r-md hover:text-black" @click.prevent="quantity++">+</button>
+                                <button class="text-white focus:outline-none font-bold text-xl bg-red-500 rounded-r-md hover:text-black" @click.prevent="if(quantity < <?= get_field('available_units') ?>) quantity++">+</button>
                             </div>
                             <button class="focus:outline-none w-1/2 md:w-1/5 text-white bg-gray-600 rounded-md py-1 hover:text-gray-300" type="submit" name="addToCart">Add To Cart</button>
                         </form>
@@ -81,7 +61,8 @@
                             <svg class="fill-current w-6 h-6 inline" viewBox="0 0 24 24">
                                 <path d="M0 0h24v24H0V0z" fill="none" />
                                 <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
-                            </svg></button>
+                            </svg>
+                        </button>
                     </form>
                 </div>
             </div>

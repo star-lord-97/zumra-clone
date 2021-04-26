@@ -52,7 +52,6 @@
                     // remove from wishlist
                     if (isset($_POST['removeFromWishlist'])) {
                         $index = array_search($_POST['productId'], $_SESSION['wishlist']);
-                        echo $index;
                         array_splice($_SESSION['wishlist'], $index, 1);
                         redirect(get_permalink(get_page_by_path('wishlist')));
                     }
