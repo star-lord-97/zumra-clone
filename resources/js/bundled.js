@@ -75,19 +75,15 @@ if (taxonomy_name) {
 var pricePattern = /(?:upper|lower).\d+/g;
 var getRequest_price = currentLocation.search.match(pricePattern) ? currentLocation.search.match(pricePattern).join() : '';
 var priceRange_pattern = /\d+/g;
-var getRequest_numArr = getRequest_price.match(priceRange_pattern); // get page number 
-
-var pagedPatten = /(?:page).\d+/g;
-var getRequest_page = currentLocation.search.match(pagedPatten) ? currentLocation.search.match(pagedPatten).join() : 1;
-var pagedNum = parseInt(getRequest_page, 10); // match this string for some sorting values using regex
+var getRequest_numArr = getRequest_price.match(priceRange_pattern); // match this string for some sorting values using regex
 
 var orderbyPattern = /(?:DESC|ASC|price|date)/g;
 var getRequest_orderby = currentLocation.search.match(orderbyPattern); // recieve api sent data 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON(productsData.root_url + '/wp-json/api/v1/products' + currentLocation.search + is_taxonomy + taxonomy_name, function ($results) {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-counter').html("\n        <p>of ".concat($results.paginationInfo.map(function (item) {
-    return item.post_count;
-  }), "</p>\n        "));
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-counter').html("\n    ".concat($results.paginationInfo.map(function (item) {
+    return "<p>Showing ".concat(item.show_start, " - ").concat(item.show_end, " of ").concat(item.total_posts, " results</p> ");
+  })));
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#product-results').html("\n    ".concat($results.Products.map(function (item) {
     return "\n    <a href=\"".concat(item.permalink, "\" class=\"flex flex-col items-center justify-center space-y-4 bg-white border rounded-b-xl hover:bg-gray-100\">\n        <div class=\"w-full\" id=\"product card\">\n            <img src=\"").concat(item.image, "\" alt=\"\" class=\"w-full\">\n            <h1 class=\"flex justify-center font-bold text-gray-600\" id=\"product-name\">").concat(item.title, "</h1>\n            <div class=\"flex justify-center pt-2\" id=\"rating\">\n                <div class=\"stars-outer\">\n                    <div class=\"stars-inner\"></div>\n                </div>\n            </div>\n        </div>\n        <div class=\"flex items-center w-full pb-4 justify-evenly\">\n            <h1 class=\"font-bold\">").concat(item.price, " EGP</h1>\n            ").concat(item.on_sale ? "<h1 class=\"font-bold line-through\">".concat(item.sale_price, " EGP</h1>") : '', "\n        </div>\n    </a>\n    ");
   }).join(''), "\n "));

@@ -21,6 +21,7 @@ function sort_filter_results($data){
     if(!$page){
         $page = 1;
     }
+    $post_per_page = 4;
 
     // filter prices between ranges 
 if (isset($lower) && isset($upper)){
@@ -45,7 +46,7 @@ if (isset($lower) && isset($upper)){
         if (isset($taxonomy)){
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 6,
+                'posts_per_page' => $post_per_page,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_key' => $compare_key,
@@ -70,7 +71,7 @@ if (isset($lower) && isset($upper)){
         }else{
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 6,
+                'posts_per_page' => $post_per_page,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_key' => $compare_key,
@@ -93,7 +94,7 @@ if (isset($lower) && isset($upper)){
         if($taxonomy){
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 6,
+                'posts_per_page' => $post_per_page,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'tax_query' => array(
@@ -115,7 +116,7 @@ if (isset($lower) && isset($upper)){
         }else{
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 6,
+                'posts_per_page' => $post_per_page,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_query' => array(array(
@@ -134,7 +135,7 @@ if (isset($lower) && isset($upper)){
     if(isset($taxonomy)){
         $mainQuery = new WP_Query(array(
             'post_type' => 'product',
-            'posts_per_page' => 6,
+            'posts_per_page' => $post_per_page,
             'paged' => $page,
             's' => sanitize_text_field($searchTerm),
             'tax_query' => array(
@@ -149,7 +150,7 @@ if (isset($lower) && isset($upper)){
     }else{
         $mainQuery = new WP_Query(array(
             'post_type' => 'product',
-            'posts_per_page' => 6,
+            'posts_per_page' => $post_per_page,
             'paged' => $page,
             's' => sanitize_text_field($searchTerm)
             )
@@ -176,6 +177,18 @@ $results = [
             ]
         );
     }
+    // pagination varibles sent to front-end to be rendered
+    $show_start = 1;
+    if ($page>1){
+        $show_start = ((intval($page)-1)*$post_per_page)+1;
+    }
+    if(intval($page) == $mainQuery->max_num_pages){
+        $show_end = $mainQuery->found_posts;
+    }else{
+        $show_end = $page*$post_per_page;
+    }
+    $prev_pageCount = intval($page) - 1;
+    $next_pageCount = intval($page) + 1;
     if(isset($taxonomy)){
         $taxonomy_link = get_term_link($taxonomy, 'product-category');
         array_push($results['paginationInfo'],[
@@ -183,12 +196,15 @@ $results = [
                 'base' => $taxonomy_link.'%_%',
                 'format' => '?page=%#%',
                 'total' => $mainQuery->max_num_pages,
-                'current' => $page ? $page : 1,
+                'current' => $page,
                 'show_all' => False,
                 'prev_next' => True,
                 'type' => 'plain',
             )),
-            'post_count' => $mainQuery->found_posts,
+            'total_posts' => $mainQuery->found_posts,
+            'show_start' => $show_start,
+            'show_end' => $show_end,
+            'previous_page' => $page
         ]);
     }else{
         array_push($results['paginationInfo'],[
@@ -196,12 +212,15 @@ $results = [
                 'base' => site_url('/products').'%_%',
                 'format' => '?page=%#%',
                 'total' => $mainQuery->max_num_pages,
-                'current' => $page ? $page : 1,
+                'current' => $page,
                 'show_all' => False,
                 'prev_next' => True,
                 'type' => 'plain',
             )),
-            'post_count' => $mainQuery->found_posts,
+            'total_posts' => $mainQuery->found_posts,
+            'show_start' => $show_start,
+            'show_end' => $show_end,
+            'previous_page' => $page
         ]);
     }
     

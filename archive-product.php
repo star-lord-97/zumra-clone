@@ -2,7 +2,7 @@
 get_header();
 
 ?>
-<main class="grid pt-20 bg-gray-100 grid-flow-rows">
+<main class="grid bg-gray-100 pt-28 grid-flow-rows">
     <!-- product navigation -->
     <div class="pt-4 m-4" >
         <nav class="grid justify-start grid-flow-col gap-4 text-justify" id="page-nav">

@@ -65,10 +65,6 @@ var pricePattern = /(?:upper|lower).\d+/g;
 var getRequest_price = currentLocation.search.match(pricePattern) ? currentLocation.search.match(pricePattern).join() : '';
 var priceRange_pattern = /\d+/g;
 var getRequest_numArr = getRequest_price.match(priceRange_pattern);
-// get page number 
-var pagedPatten = /(?:page).\d+/g;
-var getRequest_page = currentLocation.search.match(pagedPatten) ? currentLocation.search.match(pagedPatten).join() : 1 ;
-var pagedNum = parseInt(getRequest_page,10);
 // match this string for some sorting values using regex
 var orderbyPattern = /(?:DESC|ASC|price|date)/g;
 var getRequest_orderby = currentLocation.search.match(orderbyPattern);
@@ -76,8 +72,8 @@ var getRequest_orderby = currentLocation.search.match(orderbyPattern);
 // recieve api sent data 
 $.getJSON(productsData.root_url +'/wp-json/api/v1/products'+currentLocation.search+is_taxonomy+taxonomy_name, ($results)=>{
     $('#results-counter').html(`
-        <p>of ${$results.paginationInfo.map(item => item.post_count)}</p>
-        `);
+    ${$results.paginationInfo.map(item => `<p>Showing ${item.show_start} - ${item.show_end} of ${item.total_posts} results</p> `)}`);
+        
     
     $('#product-results').html(`
     ${$results.Products.map(item =>`
