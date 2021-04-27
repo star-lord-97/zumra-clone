@@ -39,7 +39,7 @@
         </div>      
         <!-- navbar -->
         <div x-data="{ openMobileMenu: false }" class="px-4 py-4 text-white bg-primary">
-
+            
             <div class="container flex items-center justify-between mx-auto">
             
                 <?php get_template_part('templates/logo') ?>
@@ -66,4 +66,7 @@
                 </div>
             </div>
         </div>
+        <!-- search input field -->
+            <?php echo get_search_form();?>
+        
     </header>

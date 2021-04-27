@@ -12,7 +12,7 @@ function products_sort_filter(){
 
 function sort_filter_results($data){
     // get the search, sort and filter parameters
-    $searchTerm = $data->get_param('term');
+    $searchTerm = $data->get_param('s');
     $lower = $data->get_param('lower');
     $upper = $data->get_param('upper');
     $orderBy = $data->get_param('orderby');
@@ -21,7 +21,7 @@ function sort_filter_results($data){
     if(!$page){
         $page = 1;
     }
-    $post_per_page = 4;
+    $post_per_page = 20;
 
     // filter prices between ranges 
 if (isset($lower) && isset($upper)){
