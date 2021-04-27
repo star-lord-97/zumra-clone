@@ -3,7 +3,7 @@
 <?php the_post(); ?>
 
 <main>
-    <div class="px-4 pt-32 pb-8 bg-gray-100">
+    <div class="px-4 pt-32 pb-8 ">
         <div class="container mx-auto space-y-8">
             <!-- product navigation -->
             <div class="flex items-center space-x-1 text-sm md:text-base">

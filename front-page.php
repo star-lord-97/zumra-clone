@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main>
-    <div class="px-4 pt-32 pb-8 bg-gray-100">
+    <div class="px-4 pt-32 pb-8">
         <div class="container mx-auto space-y-8">
             <!-- hero glide -->
             <div class="glide">

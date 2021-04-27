@@ -19,7 +19,7 @@
         }
         ?>
     </div>
-    <div class="w-full flex justify-evenly items-center pb-4">
+    <div class="w-full flex justify-evenly items-center pb-4 ">
         <h1 class="font-bold"><?= $args['price'] ?> EGP</h1>
         <?php if ($args['on_sale']) { ?>
             <h1 class="font-bold line-through"><?= $args['sale_price'] ?> EGP</h1>

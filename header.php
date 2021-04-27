@@ -7,7 +7,7 @@
     <?php wp_head() ?>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-between bg-gray-100">
     <!-- header -->
     <header class="fixed w-full z-10">
         <!-- socials bar -->
