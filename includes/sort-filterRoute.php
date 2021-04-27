@@ -203,8 +203,7 @@ $results = [
             )),
             'total_posts' => $mainQuery->found_posts,
             'show_start' => $show_start,
-            'show_end' => $show_end,
-            'previous_page' => $page
+            'show_end' => $show_end
         ]);
     }else{
         array_push($results['paginationInfo'],[
@@ -219,8 +218,7 @@ $results = [
             )),
             'total_posts' => $mainQuery->found_posts,
             'show_start' => $show_start,
-            'show_end' => $show_end,
-            'previous_page' => $page
+            'show_end' => $show_end
         ]);
     }
     
