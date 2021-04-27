@@ -39,13 +39,13 @@
     right: 0% !important;
 }
 /* end */
-/* single-product styles */
 
+/* ? start */
+/* single-product styles */
 /*
 product navigation panel
 */
-#page-nav a:after
-{
+#page-nav a:after {
     content: "\f105";
     font-family: "Font Awesome 5 Free";
     margin-left: 10px;
@@ -58,74 +58,44 @@ product navigation panel
     text-align: center;
 }
 
-/* 5 stars rating disply */
-
-.stars-outer {
-    display: inline-block;
-    position: relative;
-    font-family: FontAwesome;
-}
-
-.stars-outer::before {
-    content: "\f006 \f006 \f006 \f006 \f006";
-    color: red;
-}
-
-.stars-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0%;
-}
-
-.stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: red;
-}
-
 /* add review 5 stars rating styles */
-#star-rating{
+#star-rating {
     @apply grid justify-end grid-flow-col gap-0;
     transform: rotateY(180deg);
 }
 
-.star-label{
+.star-label {
     display: inline-block;
     position: relative;
     font-family: FontAwesome;
 }
-.star-label::before{
+.star-label::before {
     content: "\f006";
     color: red;
     display: block;
-
 }
 
 .star-label:hover:after,
 .star-label:hover ~ .star-label:after,
-.star-input:checked ~ .star-label:after{
+.star-input:checked ~ .star-label:after {
     content: "\f005";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: red;
     position: absolute;
-    top:0;
+    top: 0;
     display: block;
 }
 
 /*add to wishlist hreat styles */
-#heart-label{
+#heart-label {
     display: inline-block;
     position: absolute;
     font-family: FontAwesome;
 }
 
-#heart-label::before{
-    content: '\f08a';
+#heart-label::before {
+    content: "\f08a";
     font-family: FontAwesome;
     margin-right: 10px;
     color: red;
@@ -134,8 +104,8 @@ product navigation panel
 }
 
 #heart-label:hover::before,
-#heart-input:checked ~ #heart-label:before{
-    content: '\f004';
+#heart-input:checked ~ #heart-label:before {
+    content: "\f004";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     color: red;
@@ -144,13 +114,14 @@ product navigation panel
 }
 
 .noUi-connect {
-	@apply bg-red-500;
+    @apply bg-red-500;
 }
-.noUi-handle{
-	@apply bg-white rounded-full;
+.noUi-handle {
+    @apply bg-white rounded-full;
 }
-.noUi-handle:after, .noUi-handle:before{
-    content:"";
+.noUi-handle:after,
+.noUi-handle:before {
+    content: "";
     display: block;
     position: relative;
     height: 0px;
@@ -166,9 +137,9 @@ product navigation panel
     top: -5px;
 }
 #slider-value::after {
-    content: "  EGP"
+    content: "  EGP";
 }
-#order-list::after{
+#order-list::after {
     content: "\f0d7";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -176,3 +147,4 @@ product navigation panel
     position: relative;
     display: inline-block;
 }
+/* ? end */

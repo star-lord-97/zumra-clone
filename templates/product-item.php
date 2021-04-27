@@ -1,22 +1,3 @@
-
-<a href="<?php echo get_the_permalink();?>" class="flex flex-col items-center justify-center space-y-4 bg-white border rounded-b-xl hover:bg-gray-100">
-    <div class="w-full" id="product card">
-        <img src="<?= $args['image'] ?>" alt="" class="w-full">
-        <h1 class="flex justify-center font-bold text-gray-600" id="product-name"><?php echo $args['title']; ?></h1>
-        <div class="flex justify-center pt-2" id="rating">
-            <div class="stars-outer">
-                <div class="stars-inner"></div>
-            </div>
-        </div>
-    </div>
-    <div class="flex items-center w-full pb-4 justify-evenly">
-        <h1 class="font-bold"><?= $args['price'] ?> EGP</h1>
-        <?php if ($args['on_sale']) { ?>
-            <h1 class="font-bold line-through"><?= $args['sale_price'] ?> EGP</h1>
-        <?php } ?>
-    </div>
-</a>
-<!--
 <a href="<?= $args['permalink'] ?>" class="flex flex-col items-center justify-center space-y-4 bg-white border rounded-b-xl hover:bg-gray-100">
     <img src="<?= $args['image'] ?>" alt="" class="w-full h-full">
     <h1><?= $args['title'] ?></h1>
@@ -45,4 +26,3 @@
         <?php } ?>
     </div>
 </a>
-        -->
