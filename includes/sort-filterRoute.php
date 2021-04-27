@@ -45,7 +45,7 @@ if (isset($lower) && isset($upper)){
         if (isset($taxonomy)){
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 1,
+                'posts_per_page' => 6,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_key' => $compare_key,
@@ -70,7 +70,7 @@ if (isset($lower) && isset($upper)){
         }else{
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 1,
+                'posts_per_page' => 6,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_key' => $compare_key,
@@ -93,7 +93,7 @@ if (isset($lower) && isset($upper)){
         if($taxonomy){
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 1,
+                'posts_per_page' => 6,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'tax_query' => array(
@@ -115,7 +115,7 @@ if (isset($lower) && isset($upper)){
         }else{
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
-                'posts_per_page' => 1,
+                'posts_per_page' => 6,
                 'paged' => $page,
                 's' => sanitize_text_field($searchTerm),
                 'meta_query' => array(array(
@@ -134,7 +134,7 @@ if (isset($lower) && isset($upper)){
     if(isset($taxonomy)){
         $mainQuery = new WP_Query(array(
             'post_type' => 'product',
-            'posts_per_page' => 1,
+            'posts_per_page' => 6,
             'paged' => $page,
             's' => sanitize_text_field($searchTerm),
             'tax_query' => array(
@@ -149,7 +149,7 @@ if (isset($lower) && isset($upper)){
     }else{
         $mainQuery = new WP_Query(array(
             'post_type' => 'product',
-            'posts_per_page' => 1,
+            'posts_per_page' => 6,
             'paged' => $page,
             's' => sanitize_text_field($searchTerm)
             )

@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
  // get the current location url search parameters (returns as a string)
 
-var currentLocation = window.location;
+var currentLocation = window.location; // get category name via pathname 
+
 var taxonomyPattern = /(?<=category\/).*[a-z]/g;
 var taxonomy_name = currentLocation.pathname.match(taxonomyPattern) ? currentLocation.pathname.match(taxonomyPattern).join() : '';
 var is_taxonomy = '';
@@ -74,19 +75,14 @@ if (taxonomy_name) {
 var pricePattern = /(?:upper|lower).\d+/g;
 var getRequest_price = currentLocation.search.match(pricePattern) ? currentLocation.search.match(pricePattern).join() : '';
 var priceRange_pattern = /\d+/g;
-var getRequest_numArr = getRequest_price.match(priceRange_pattern);
+var getRequest_numArr = getRequest_price.match(priceRange_pattern); // get page number 
+
 var pagedPatten = /(?:page).\d+/g;
 var getRequest_page = currentLocation.search.match(pagedPatten) ? currentLocation.search.match(pagedPatten).join() : 1;
 var pagedNum = parseInt(getRequest_page, 10); // match this string for some sorting values using regex
 
 var orderbyPattern = /(?:DESC|ASC|price|date)/g;
-var getRequest_orderby = currentLocation.search.match(orderbyPattern);
-/* if there is sorting by any paramter then put the sorting value in single 
-string to use it for comparison to render select options tag */
-
-if (getRequest_orderby) {
-  var orderby_val = getRequest_orderby[0] + ' ' + getRequest_orderby[1];
-}
+var getRequest_orderby = currentLocation.search.match(orderbyPattern); // recieve api sent data 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON(productsData.root_url + '/wp-json/api/v1/products' + currentLocation.search + is_taxonomy + taxonomy_name, function ($results) {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#results-counter').html("\n        <p>of ".concat($results.paginationInfo.map(function (item) {
@@ -108,7 +104,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON(productsData.root_url + '/
   for (var i = 0; i < star_elements.length; i++) {
     star_elements[i].style.width = starPercentageRounded;
   }
-}); // get the order list with the sorting by option selected if not render the default sorting list options
+});
+/* if there is sorting by any paramter then put the sorting value in single 
+string to use it for comparison to render select options tag */
+
+if (getRequest_orderby) {
+  var orderby_val = getRequest_orderby[0] + ' ' + getRequest_orderby[1];
+} // get the order list with the sorting by option selected if not render the default sorting list options
+
 
 var orderbyList = document.getElementById("orderby-list");
 

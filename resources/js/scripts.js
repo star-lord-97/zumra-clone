@@ -72,11 +72,7 @@ var pagedNum = parseInt(getRequest_page,10);
 // match this string for some sorting values using regex
 var orderbyPattern = /(?:DESC|ASC|price|date)/g;
 var getRequest_orderby = currentLocation.search.match(orderbyPattern);
-/* if there is sorting by any paramter then put the sorting value in single 
-string to use it for comparison to render select options tag */
-if (getRequest_orderby){
-    var orderby_val = getRequest_orderby[0]+' '+getRequest_orderby[1];
-}
+
 // recieve api sent data 
 $.getJSON(productsData.root_url +'/wp-json/api/v1/products'+currentLocation.search+is_taxonomy+taxonomy_name, ($results)=>{
     $('#results-counter').html(`
@@ -116,6 +112,11 @@ $.getJSON(productsData.root_url +'/wp-json/api/v1/products'+currentLocation.sear
         star_elements[i].style.width = starPercentageRounded;
     }
 });
+/* if there is sorting by any paramter then put the sorting value in single 
+string to use it for comparison to render select options tag */
+if (getRequest_orderby){
+    var orderby_val = getRequest_orderby[0]+' '+getRequest_orderby[1];
+}
 // get the order list with the sorting by option selected if not render the default sorting list options
 var orderbyList = document.getElementById("orderby-list");
 if (orderby_val === 'DESC price'){
