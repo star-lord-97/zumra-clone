@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
       return parseInt(counter.innerHTML, 10);
     }
   });
+}); // searchform 
+
+var cat_search = document.getElementById('cat-search');
+cat_search.addEventListener('change', function () {
+  var cat_input_btn = document.getElementById('cat-search-btn');
+  cat_input_btn.value = cat_search.value;
 }); //////////////////////////////////////////////////////////////////////////
 
 /* archive-product.php && taxonomy-product-category.php JS functions */

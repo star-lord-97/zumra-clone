@@ -2,6 +2,15 @@
 
 require get_theme_file_path('/includes/sort-filterRoute.php');
 
+function universityQueryVars($vars){
+    // register a new query variable (skyColor=)
+    $vars[] = 's';
+    // register another query variable
+    $vars[] = 'taxonomy';
+    return $vars;
+}
+add_filter('query_vars', 'universityQueryVars');
+
 add_action('wp_enqueue_scripts', 'zumra_files');
 
 function zumra_files()

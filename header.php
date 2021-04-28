@@ -65,8 +65,12 @@
                     </div>
                 </div>
             </div>
+            
         </div>
         <!-- search input field -->
+        <div class='flex justify-center'>
             <?php echo get_search_form();?>
+        </div>
+        
         
     </header>

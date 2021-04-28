@@ -43,7 +43,7 @@ if (isset($lower) && isset($upper)){
         }
 
         // if the sorting is done by values and price ranges then create this WP_Query
-        if (isset($taxonomy)){
+        if ($taxonomy){
             $mainQuery = new WP_Query(array(
                 'post_type' => 'product',
                 'posts_per_page' => $post_per_page,
@@ -132,7 +132,7 @@ if (isset($lower) && isset($upper)){
         
     }
 }else{
-    if(isset($taxonomy)){
+    if($taxonomy){
         $mainQuery = new WP_Query(array(
             'post_type' => 'product',
             'posts_per_page' => $post_per_page,
@@ -189,7 +189,7 @@ $results = [
     }
     $prev_pageCount = intval($page) - 1;
     $next_pageCount = intval($page) + 1;
-    if(isset($taxonomy)){
+    if($taxonomy){
         $taxonomy_link = get_term_link($taxonomy, 'product-category');
         array_push($results['paginationInfo'],[
             'pagination' => paginate_links(array(
